@@ -275,6 +275,13 @@ if EXTRA_ENV_COMPILE_ARGS is None:
         EXTRA_ENV_COMPILE_ARGS += (
             " -fvisibility=hidden -fno-wrapv -fno-exceptions"
         )
+    elif "netbsd" in sys.platform:
+        # gcc 10 supports c++17 but defaults to a lower std.
+        EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
+        # These seem to be "if not windows", so just copy from Linux.
+        EXTRA_ENV_COMPILE_ARGS += (
+            " -fvisibility=hidden -fno-wrapv -fno-exceptions"
+        )
     elif "darwin" in sys.platform:
         # AppleClang by defaults uses C17 so only C++17 needs to be specified.
         EXTRA_ENV_COMPILE_ARGS += " -std=c++17"
