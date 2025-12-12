@@ -186,7 +186,7 @@ void Collect(Notification* n, absl::Duration timeout, size_t memory_limit,
             {earliest_timestamp, event.timestamp_begin, event.timestamp_end});
       } else {
         earliest_timestamp =
-            std::min(earliest_timestamp, abs(event.timestamp_end));
+            std::min(earliest_timestamp, std::abs(event.timestamp_end));
       }
     }
   }
